@@ -11,5 +11,7 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
+    volumes:
+        - ./:/app:ro
     environment:
       MARIADB_PLUGIN_DIR: "/usr/lib/x86_64-linux-gnu/mariadb19/plugin"
