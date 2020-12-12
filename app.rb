@@ -10,6 +10,7 @@ unless DB.table_exists?(:test)
 end
 
 text = {"type"=>"doc", "content"=>[{"type"=>"text", "text"=>"first"}]}
+puts("Inserting:", text)
 record_id = DB[:test].insert(text: text)
 inserted_record = DB[:test].where(id: record_id).first
-puts("Inserted record: ", inserted_record.inspect)
+puts("Inserted record: ", inserted_record)
