@@ -52,4 +52,10 @@ INSERT INTO `test` (`text`) VALUES ((('type' = 'doc') AND ('content' IN ((('type
 
 Apparently the hash is getting converted into a conditional by `sequel` or `mysql2`
 which is then being sent to mysql which evaluates it to 0 or 1. Interestingly it
-is then being converted to a string.
+is then being converted to a string. Upon further inspection, MySQL appears to cast
+all numbers to string if they're being inserted into `VARCHAR` fields. According
+to [this post] in the drupal guidelines, MySQL allows conversion between any
+type.
+
+Looking into this more, MySQL implicitly converting values appears to be a common
+source of bugs, we're not alone!
