@@ -1,0 +1,15 @@
+version: "2"
+
+services:
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: test
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      MARIADB_PLUGIN_DIR: "/usr/lib/x86_64-linux-gnu/mariadb19/plugin"
